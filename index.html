@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Probing Cheat Sheet</title>
-    
+    <title>Probing Cheat Sheet</title>    
 <style>
     body {
         background-color: #222;
@@ -46,9 +45,10 @@
     }
 
     .dark-mode {
-        background-color: #333;
-        color: #fff;
+        background-color: gray;
+        color: white;
     }
+	
 
     ul {
         list-style-type: none;
@@ -100,9 +100,10 @@
 </style>
 
 </head>
-<body>
-
-    <h1>Probing Cheat Sheet</h1>
+<body>	
+	<header>
+		<h1>Probing Cheat Sheet</h1>
+	</header>
 
     <ul>
     	<li>
@@ -112,131 +113,98 @@
                     <option value="G65P95">MX-520</option>
                 </select>    		
     	</li>
-	<li>
-		<h2>Probe On</h2>
-		<code id="probe_on">G65P9832(PROBE ON)</code><button onclick="copyText('probe_on')">Copy</button>
-	</li>
-	<li>
-		<h2>Probe Off</h2>
-		<code id="probe_off">G65P9833(PROBE OFF)</code><button onclick="copyText('probe_off')">Copy</button>
-	</li>
-    <li>
-	<h2>PPM  - Protected Positioning Movement</h2>
-        <code id="ppm">G65P9810(PPM)</code><button onclick="copyText('ppm')">Copy</button>
-        <ul>
-	    <li>X Position: <input type="text" id="ppm_x" placeholder="X Position"></input></li>
-	    <li>Y Position: <input type="text" id="ppm_y" placeholder="Y Position"></input></li>
-	    <li>Z Position: <input type="text" id="ppm_z" placeholder="Z Position"></input></li>
-            <li>Feed: <input type="text" id="ppm_feed" placeholder="Defaults to 39.37( Not required )"></input></li>
-        </ul>
-    </li>
- 
-   <li>
-	<h2>Single Point</h2>
-        <code id="single_pt">G65P9811(SINGLE PT)</code><button onclick="copyText('single_pt')">Copy</button>
-        <ul>
-            <li>
-		Axis: 
-                <select id="single_pt_axis">
-                    <option value="X">X</option>
-                    <option value="Y">Y</option>
-                    <option value="Z" selected>Z</option>
-                </select>
-            </li>
-            <li>Position: <input type="text" id="single_pt_pos" placeholder="Probing Position"></input></li>
-            <li>
-		WCS: 
-                <select id="single_pt_wcs">
-                    <option value="S1.">G54</option>
-                    <option value="S2.">G55</option>
-		    <option value="S6.">G59</option>
-		    <option value="S101.">G54.1P1</option>
-                    <option value="">N/A</option>
-                </select>
-            </li>
-            <li>Overtravel: <input type="text" id="single_pt_overtravel" placeholder="If Blank, Defaults to .400 ( Not Required )"></input></li>
-        </ul>
-    </li>
-    <li>
-	<h2>Web / Pocket - Start at Center of Feature</h2>
-        <code id="web_pocket">G65P9812</code><button onclick="copyText('web_pocket')">Copy</button>
-        <ul>
-             <li>
-		Axis: 
-                <select id="web_pocket_axis">
-                    <option value="X">X</option>
-                    <option value="Y">Y</option>
-                </select>
-            </li>
-	    <li>Width Of Feature: <input type="text" id="web_pocket_width" placeholder="Width of Feature" value=""></input></li>
-	    <li>Z Position: <input type="text" id="web_pocket_pos" placeholder="Web uses Z, Pocket = No Z" value=""></input></li>
-	    <li>Radial Clearance: <input type="text" id="web_pocket_radial" placeholder="Defaults to .400( Not Required )" value=""></input></li>
-            <li>
-		WCS: 
-                <select id="web_pocket_wcs">
-                    <option value="S1.">G54</option>
-                    <option value="S2.">G55</option>
-		    <option value="S6.">G59</option>
-		    <option value="S101.">G54.1P1</option>
-                    <option value="">N/A</option>
-                </select>
-            </li>
-        </ul>
-    </li>
-
-
-    <li>
-	<h2>Bore / Boss</h2>
-        <code id="bore_boss">G65P9814</code><button onclick="copyText('bore_boss')">Copy</button>
-        <ul>
-	    <li>X Position: <input type="text" id="bore_boss_x" placeholder="Nominal X Position of Feature" value=""></input></li>
-  	    <li>Y Position: <input type="text" id="bore_boss_y" placeholder="Nominal Y Position of Feature" value=""></input></li>	
-   	    <li>Diameter of Feature: <input type="text" id="bore_boss_diameter" placeholder="Diameter of Feature" value=""></input></li>
-	    <li>Z Position ( Only For Boss ): <input type="text" id="bore_boss_z" placeholder="Boss Requires Z, Bore = Leave Blank" value=""></input></li>
-	    <li>Radial Clearance: <input type="text" id="bore_boss_radial" placeholder="Defaults to .400( Not Required )" value=""></input></li>
-            <li>
-		WCS: 
-                <select id="bore_boss_wcs">
-                    <option value="S1.">G54</option>
-                    <option value="S2.">G55</option>
-		    <option value="S6.">G59</option>
-		    <option value="S101.">G54.1P1</option>
-                    <option value="">N/A</option>
-                </select>
-            </li>
-        </ul>
-    </li>       
-    <li>
-	<h2>5 Point rectangle External - Start at Center of Rectangle</h2>
-        <code id="external_rectangle">G65P9817</code><button onclick="copyText('external_rectangle')">Copy</button>
-        <ul>
-	    <li>Nominal Width in X Axis: <input type="text" id="external_rectangle_x_width" placeholder="Width of Rectangle in X" value=""></input></li>
-	    <li>Nominal Width in Y Axis: <input type="text" id="external_rectangle_y_width" placeholder="Width of Rectangle in Y" value=""></input></li>
-	    <li>Z Measuring Hight Position: <input type="text" id="external_rectangle_z" placeholder="Z Position for Probe Points" value=""></input></li>
-	    <li>Radial Clearance: <input type="text" id="external_rectangle_radial" placeholder="Defaults to .400( Not Required )" value=""></input></li>
-            <li>
-		WCS: 
-                <select id="external_rectangle_wcs">
-                    <option value="S1.">G54</option>
-                    <option value="S2.">G55</option>
-		    <option value="S6.">G59</option>
-		    <option value="S101.">G54.1P1</option>
-                    <option value="">N/A</option>
-                </select>
-            </li>
-            <li>
-		Location of the 2 Probing Points: 
-                <select id="external_double_points">
-                    <option value="">Y Minus</option>
-                    <option value="A11.">X Plus</option>
-		    <option value="A12.">Y Plus</option>
-		    <option value="A13.">X Minus</option>
-                </select>
-            </li>            
-        </ul>
+		<li>
+			<h2>Probe On</h2>
+			<code id="probe_on">G65P9832(PROBE ON)</code><button onclick="copyText('probe_on')">Copy</button>
+		</li>
+		<li>
+			<h2>Probe Off</h2>
+			<code id="probe_off">G65P9833(PROBE OFF)</code><button onclick="copyText('probe_off')">Copy</button>
+		</li>
+		<li>
+			<h2>PPM  - Protected Positioning Movement</h2>
+				<code id="ppm">G65P9810(PPM)</code><button onclick="copyText('ppm')">Copy</button>
+				<ul>
+					<li>X Position: <input type="text" id="ppm_x" placeholder="X Position"></input></li>
+					<li>Y Position: <input type="text" id="ppm_y" placeholder="Y Position"></input></li>
+					<li>Z Position: <input type="text" id="ppm_z" placeholder="Z Position"></input></li>
+					<li>Feed: <input type="text" id="ppm_feed" placeholder="Defaults to 39.37( Not required )"></input></li>
+				</ul>
+		</li> 
+	   <li>
+			<h2>Single Point</h2>
+			<code id="single_pt">G65P9811(SINGLE PT)</code><button onclick="copyText('single_pt')">Copy</button>
+			<ul>
+				<li>
+					Axis: 
+					<select id="single_pt_axis">
+						<option value="X">X</option>
+						<option value="Y">Y</option>
+						<option value="Z" selected>Z</option>
+					</select>
+				</li>
+				<li>Position: <input type="text" id="single_pt_pos" placeholder="Probing Position"></input></li>
+				<li><label for="single_pt_wcs">WCS: </label><select id="single_pt_wcs"></select></li>
+				<li>Overtravel: <input type="text" id="single_pt_overtravel" placeholder="If Blank, Defaults to .400 ( Not Required )"></input></li>
+			</ul>
+		</li>
+		<li>
+			<h2>Web / Pocket - Start at Center of Feature</h2>
+			<code id="web_pocket">G65P9812(WEB / POCKET)</code><button onclick="copyText('web_pocket')">Copy</button>
+			<ul>
+				 <li>
+					Axis: 
+					<select id="web_pocket_axis">
+						<option value="X">X</option>
+						<option value="Y">Y</option>
+					</select>
+				</li>
+				<li>Width Of Feature: <input type="text" id="web_pocket_width" placeholder="Width of Feature" value=""></input></li>
+				<li>Z Position: <input type="text" id="web_pocket_pos" placeholder="Web uses Z, Pocket = No Z" value=""></input></li>
+				<li>Radial Clearance: <input type="text" id="web_pocket_radial" placeholder="Defaults to .400( Not Required )" value=""></input></li>
+				<li>
+					WCS: 
+					<select id="web_pocket_wcs"></select>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h2>Bore / Boss</h2>
+			<code id="bore_boss">G65P9814(BORE / BOSS)</code><button onclick="copyText('bore_boss')">Copy</button>
+			<ul>
+			<li>X Position: <input type="text" id="bore_boss_x" placeholder="Nominal X Position of Feature" value=""></input></li>
+			<li>Y Position: <input type="text" id="bore_boss_y" placeholder="Nominal Y Position of Feature" value=""></input></li>	
+			<li>Diameter of Feature: <input type="text" id="bore_boss_diameter" placeholder="Diameter of Feature" value=""></input></li>
+			<li>Z Position ( Only For Boss ): <input type="text" id="bore_boss_z" placeholder="Boss Requires Z, Bore = Leave Blank" value=""></input></li>
+			<li>Radial Clearance: <input type="text" id="bore_boss_radial" placeholder="Defaults to .400( Not Required )" value=""></input></li>
+				<li>
+					WCS: 
+					<select id="bore_boss_wcs"></select>
+				</li>
+			</ul>
+		</li>       
+		<li>
+			<h2>5 Point rectangle External - Start at Center of Rectangle</h2>
+			<code id="external_rectangle">G65P9817</code><button onclick="copyText('external_rectangle')">Copy</button>
+			<ul>
+			<li>Nominal Width in X Axis: <input type="text" id="external_rectangle_x_width" placeholder="Width of Rectangle in X" value=""></input></li>
+			<li>Nominal Width in Y Axis: <input type="text" id="external_rectangle_y_width" placeholder="Width of Rectangle in Y" value=""></input></li>
+			<li>Z Measuring Hight Position: <input type="text" id="external_rectangle_z" placeholder="Z Position for Probe Points" value=""></input></li>
+			<li>Radial Clearance: <input type="text" id="external_rectangle_radial" placeholder="Defaults to .400( Not Required )" value=""></input></li>
+			<li><label for="external_rectangle_wcs">WCS: </label><select id="external_rectangle_wcs"></select></li>
+				<li>
+					Location of the 2 Probing Points: 
+					<select id="external_double_points">
+						<option value="">Y Minus</option>
+						<option value="A11.">X Plus</option>
+						<option value="A12.">Y Plus</option>
+						<option value="A13.">X Minus</option>
+					</select>
+				</li>            
+			</ul>
         </li>
         <li>
-            <h2>Feature to Feature</h2>
+            <h2>Feature to Feature - Use X & Y or A & D (**Cannot use Both**)</h2>
             <code id="feature_to_feature">G65P9834(STORE DATA)</code><button onclick="copyText('feature_to_feature')">Copy</button>
             <ul>
                 <li>X Incremental Distance: <input type="text" id="feature_to_feature_x_inc" placeholder="Incremental Distance in X From Point 1 to Point 2" value=""></input></li>
@@ -246,8 +214,8 @@
             </ul>
         </li>
     </ul>
-
-    <h2>Renishaw Probing Output Variables:</h2>
+	
+    <h2>Renishaw Probing Output Variables</h2>
     <ul>
         <li><code>#135</code> - X Position</li>
         <li><code>#136</code> - Y Position</li>
@@ -267,297 +235,171 @@
             document.body.classList.toggle('dark-mode');
         }
     </script>
+	<script>
+	
+	const comment_brackets = ["(", ")" ];
+	
+    // Function to copy text to clipboard
+    function copyText(elementId) {
+        var textElement = document.getElementById(elementId);
+        var textToCopy = textElement.textContent || textElement.innerText;
 
-</body>
+        var tempInput = document.createElement('input');
+        tempInput.value = textToCopy;
+        document.body.appendChild(tempInput);
 
- <script>	
-    var machineId = document.getElementById('machine'); 
-    // The Copy Function
-         function copyText(elementId) {
-            var textElement = document.getElementById(elementId);
-            var textToCopy = textElement.textContent || textElement.innerText;
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        document.execCommand('copy');
 
-            // Create a temporary input element
-            var tempInput = document.createElement('input');
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
+        document.body.removeChild(tempInput);
+    }
+	
+	// Function to create WCS select element
+    function createWcsSelect(id,  wcsOptions) {
+        var selectElement = document.getElementById(id);
+		var wcsOptions =  [
+            { value: 'S1.', label: 'G54' },
+            { value: 'S2.', label: 'G55' },
+			{ value: 'S3.', label: 'G56' },
+			{ value: 'S4.', label: 'G57' },
+			{ value: 'S5.', label: 'G58' },			  
+            { value: 'S6.', label: 'G59' },
+            { value: 'S101.', label: 'G54.1P1' },
+			{ value: 'S102.', label: 'G54.1P2' },
+			{ value: 'S103.', label: 'G54.1P3' },
+			{ value: 'S104.', label: 'G54.1P4' },
+            { value: '', label: 'N/A' }
+        ];
+        // Clear existing options
+        selectElement.innerHTML = '';
 
-            // Select the text in the input element
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+        // Add default option
+        var defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.text = wcsOptions[0].label;
 
-            // Copy the text to the clipboard
-            document.execCommand('copy');
+        // Add WCS options
+        wcsOptions.forEach(function (option) {
+            var wcsOption = document.createElement('option');
+            wcsOption.value = option.value;
+            wcsOption.text = option.label;
+            selectElement.appendChild(wcsOption);
+        });
+    }
 
-            // Remove the temporary input element
-            document.body.removeChild(tempInput);
+    // Function to update probe codes
+    function updateProbe(onCode, offCode) {
+        var machineId = document.getElementById('machine');
+        var codeValue = machineId.value;
+        var onElement = document.getElementById(onCode);
+        var offElement = document.getElementById(offCode);
+		
+	    function updateProbingOperation() {
+            var machineInput = machineId.value;
+			var setupModeValue = "";
+			if (machineInput == "G65P95"){
+				setupModeValue =  "D1.";
+			}
+            onElement.textContent = machineInput +  + "32" + setupModeValue + "(PROBE ON)";
+			offElement.textContent = machineInput + "33(PROBE OFF)";
         }
+		
+		machineId.addEventListener('input', updateProbingOperation);				        
+    }
 
-    function updateProbeOn(){
-    	var codeElement = document.getElementById('probe_on');
-    	var codeValue = machineId.value;
-    	codeElement.textContent = codeValue + "32(PROBE ON)";
-    }
-    
-   function updateProbeOff(){
-    	var codeElement = document.getElementById('probe_off');
-    	var codeValue = machineId.value;
-    	codeElement.textContent = codeValue + "33(PROBE OFF)";
-    }
- 
-    // Function to update PPM
-    function updatePPMcode(codeId, xId, yId, zId, feedId) {
-	var selectedMachine = document.getElementById('machine'); 
-        var code = '10';
-        var comment = "(PPM)";
-        var xInput = document.getElementById(xId);
-        var yInput = document.getElementById(yId);
-        var zInput = document.getElementById(zId);
-        var feedInput = document.getElementById(feedId);
+    // Function to update code for various operations
+    function updateCode(codeId, comment, operationCode, params) {
         var codeElement = document.getElementById(codeId);
+        var selectedMachine = document.getElementById('machine');
 
-        selectedMachine.addEventListener('input', function() {
-            updatePPM();
-        });
-
-        xInput.addEventListener('input', function() {
-            updatePPM();
-        });
-
-        yInput.addEventListener('input', function() {
-            updatePPM();
-        });
-        
-        zInput.addEventListener('input', function() {
-            updatePPM();
-        });
-
-        feedInput.addEventListener('input', function() {
-            updatePPM();
-        });
-
-        function updatePPM() {
+        function updateOperation() {
             var machineInput = selectedMachine.value;
-            var xValue = xInput.value.trim() !== '' ? 'X' + xInput.value : '';
-            var yValue = yInput.value.trim() !== '' ? 'Y' + yInput.value : '';
-            var zValue = zInput.value.trim() !== '' ? 'Z' + zInput.value : '';
-            var feedValue = feedInput.value.trim() !== '' ? 'F' + feedInput.value: '';
-            codeElement.textContent = machineInput +  code + xValue + yValue + zValue + feedValue + comment;
+            var codeValue = operationCode;
+            for (var param of params) {
+                var inputElement = document.getElementById(param.id);
+                var paramValue = inputElement.value.trim() !== '' ? param.prefix + inputElement.value : '';
+                codeValue += paramValue;
+            }
+            codeElement.textContent = machineInput + codeValue + comment_brackets[0] + comment + comment_brackets[1];
         }
-    }
 
-    // Function to update Single Point
-    function updateSinglePointcode(codeId, axisId, posId, wcsId, overtravelId) {
-        var code = '11';
-        var comment = "SINGLE PT";
-        var selectedMachine = document.getElementById('machine');
-        var axisInput = document.getElementById(axisId);
-        var posInput = document.getElementById(posId);
-	var wcsInput = document.getElementById(wcsId);
-        var overtravelInput = document.getElementById(overtravelId);
-        var codeElement = document.getElementById(codeId);
-        
-        selectedMachine.addEventListener('input', function() {
-            updateSinglePT();
-        });
+        selectedMachine.addEventListener('input', updateOperation);
 
-        axisInput.addEventListener('input', function() {
-            updateSinglePT();
-        });
-
-        posInput.addEventListener('input', function() {
-            updateSinglePT();
-        });
-
-        wcsInput.addEventListener('input', function() {
-            updateSinglePT();
-        });
-
-       overtravelInput.addEventListener('input', function() {
-            updateSinglePT();
-        });
-
-        function updateSinglePT() {
-            var machineValue = selectedMachine.value;
-            var axisValue = axisInput.value;
-            var posValue = posInput.value;
-            var overtravelValue = overtravelInput.value.trim() !== '' ? 'Q' + overtravelInput.value: '';
-	    var wcsValue = wcsInput.value.trim() !== '' ? wcsInput.value: '';
-            codeElement.textContent =  machineValue + code + axisValue + posValue + overtravelValue + wcsValue + "(" + comment + " - " + axisValue + ")";
+        for (var param of params) {
+            var inputElement = document.getElementById(param.id);
+            inputElement.addEventListener('input', updateOperation);
         }
+
+        // Run the update function on page load
+        window.onload = updateOperation;
     }
 
-    // Function to update Web / Pocket
-    function updateWebPocketcode(codeId,axisId, widthId, posId, radialId, wcsId) {
-        var code = '12';
-        var comment = ["Web", "Pocket"];
-        var axisInput = document.getElementById(axisId);
-	var widthInput = document.getElementById(widthId);
-        var posInput = document.getElementById(posId);
-	var wcsInput = document.getElementById(wcsId);
-        var radialInput = document.getElementById(radialId);
-        var codeElement = document.getElementById(codeId);
-        var selectedMachine = document.getElementById('machine');
+    // Update probe codes
+    updateProbe('probe_on', 'probe_off');
 
-	selectedMachine.addEventListener('input', function() {
-		updateWebPocket();
-	});
+    // Update PPM code
+    updateCode('ppm', 'PPM', '10', [
+        { id: 'ppm_x', prefix: 'X' },
+        { id: 'ppm_y', prefix: 'Y' },
+        { id: 'ppm_z', prefix: 'Z' },
+        { id: 'ppm_feed', prefix: 'F' }
+    ]);
 
-        axisInput.addEventListener('input', function() {
-            updateWebPocket();
-        });
+    // Update Single Point code
+    updateCode('single_pt', 'SINGLE PT', '11', [
+        { id: 'single_pt_axis', prefix: '' },
+        { id: 'single_pt_pos', prefix: '' },
+        { id: 'single_pt_wcs', prefix: '' },
+        { id: 'single_pt_overtravel', prefix: 'Q' }
+    ]);
 
-        widthInput.addEventListener('input', function() {
-            updateWebPocket();
-        });
+    // Update Web / Pocket code
+    updateCode('web_pocket', 'WEB / POCKET', '12', [
+        { id: 'web_pocket_axis', prefix: '' },
+        { id: 'web_pocket_width', prefix: '' },
+        { id: 'web_pocket_pos', prefix: 'Z' },
+        { id: 'web_pocket_radial', prefix: 'R' },
+        { id: 'web_pocket_wcs', prefix: '' }
+    ]);
 
-        posInput.addEventListener('input', function() {
-            updateWebPocket();
-        });
+    // Update Bore / Boss code
+    updateCode('bore_boss', 'BORE / BOSS',  '14', [
+        { id: 'bore_boss_x', prefix: 'X' },
+        { id: 'bore_boss_y', prefix: 'Y' },
+        { id: 'bore_boss_diameter', prefix: 'D' },
+        { id: 'bore_boss_z', prefix: 'Z' },
+        { id: 'bore_boss_radial', prefix: 'R' },
+        { id: 'bore_boss_wcs', prefix: '' }
+    ]);
 
-        wcsInput.addEventListener('input', function() {
-            updateWebPocket();
-        });
+    // Update External Rectangle code
+    updateCode('external_rectangle', '5 PT RECTANGLE', '17', [
+        { id: 'external_rectangle_x_width', prefix: 'D' },
+        { id: 'external_rectangle_y_width', prefix: 'E' },
+        { id: 'external_rectangle_z', prefix: 'Z' },
+        { id: 'external_rectangle_radial', prefix: 'R' },
+        { id: 'external_rectangle_wcs', prefix: '' },
+        { id: 'external_double_points', prefix: '' }
+    ]);
+	
+	
+	// Update feature_to_featuree code
+    updateCode('feature_to_feature', 'STORE DATA', '34', [
+        { id: 'feature_to_feature_x_inc', prefix: 'X' },
+        { id: 'feature_to_feature_y_inc', prefix: 'Y' },
+        { id: 'feature_to_feature_angle', prefix: 'A' },
+        { id: 'feature_to_feature_distance', prefix: 'D' }
+    ]);
 
-       radialInput.addEventListener('input', function() {
-            updateWebPocket();
-        });
-
-        function updateWebPocket() {
-            var axisValue = axisInput.value;
-	    var widthValue = widthInput.value;
-	    var commentValue = posInput.value.trim() !== '' ? comment[0]: comment[1];
-            var posValue = posInput.value.trim() !== '' ? 'Z' + posInput.value: '';
-            var radialValue = radialInput.value.trim() !== '' ? 'R' + radialInput.value: '';
-	    var wcsValue = wcsInput.value.trim() !== '' ? wcsInput.value: '';
-	    var machineValue = selectedMachine.value;
-            codeElement.textContent =  machineValue + code + axisValue + widthValue + posValue + radialValue + wcsValue + "(" + commentValue + " - " + axisValue + ")";
-        }
-    }
-
-    // Function to update Bore / Boss
-    function updateBoreBosscode(codeId,xId, yId, diameterId, zId, radialId, wcsId) {
-        var code = '12';
-        var comment = ["Boss", "Bore"];
-	var xInput = document.getElementById(xId);
-	var yInput = document.getElementById(yId);
-	var diameterInput = document.getElementById(diameterId);
-        var zInput = document.getElementById(zId);
-	var wcsInput = document.getElementById(wcsId);
-        var radialInput = document.getElementById(radialId);
-        var codeElement = document.getElementById(codeId);
-        var selectedMachine = document.getElementById('machine');
-
-	selectedMachine.addEventListener('input', function() {
-		updateBoreBoss();
-	});
-
-        xInput.addEventListener('input', function() {
-            updateBoreBoss();
-        });
-
-        yInput.addEventListener('input', function() {
-            updateBoreBoss();
-        });
-
-        diameterInput.addEventListener('input', function() {
-            updateBoreBoss();
-        });
-
-        zInput.addEventListener('input', function() {
-            updateBoreBoss();
-        });
-
-        wcsInput.addEventListener('input', function() {
-            updateBoreBoss();
-        });
-
-       radialInput.addEventListener('input', function() {
-            updateBoreBoss();
-        });
-
-        function updateBoreBoss() {
-	    var diameterValue = "D" + diameterInput.value;
-	    var xValue = "X" + xInput.value;
-	    var yValue = "Y" + yInput.value;
-	    var commentValue = zInput.value.trim() !== '' ? comment[0]: comment[1];
-            var zValue = zInput.value.trim() !== '' ? 'Z' + zInput.value: '';
-            var radialValue = radialInput.value.trim() !== '' ? 'R' + radialInput.value: '';
-	    var wcsValue = wcsInput.value.trim() !== '' ? wcsInput.value: '';
-	    var machineValue = selectedMachine.value;
-            codeElement.textContent =  machineValue + code + xValue + yValue + diameterValue + zValue + radialValue + wcsValue + "(" + commentValue +  ")";
-        }
-    }
-
-
-   // Function to update Bore / Boss
-    function updateExternalRectanglecode(codeId, xWidthId, yWidthId, zId, radialId, wcsId, doublePointId) {
-        var code = '17';
-        var comment = "5 PT RECTANGLE";
-	var xWidthInput = document.getElementById(xWidthId);
-	var yWidthInput = document.getElementById(yWidthId);
-        var zInput = document.getElementById(zId);
-	var wcsInput = document.getElementById(wcsId);
-        var radialInput = document.getElementById(radialId);
-        var codeElement = document.getElementById(codeId);
-        var doublePointInput = document.getElementById(doublePointId);
-        var selectedMachine = document.getElementById('machine');
-
-	selectedMachine.addEventListener('input', function() {
-		updateBoreBoss();
-	});        
-
-        xWidthInput.addEventListener('input', function() {
-            updateExternalRectangle();
-        });
-
-        yWidthInput.addEventListener('input', function() {
-            updateExternalRectangle();
-        });
-
-        zInput.addEventListener('input', function() {
-            updateExternalRectangle();
-        });
-
-        wcsInput.addEventListener('input', function() {
-            updateExternalRectangle();
-        });
-
-       radialInput.addEventListener('input', function() {
-            updateExternalRectangle();
-        });
-        
-        doublePointInput.addEventListener('input', function() {
-            updateExternalRectangle();
-        });
-
-        function updateExternalRectangle() {
-	    var xValue = "D" + xWidthInput.value;
-	    var yValue = "E" + yWidthInput.value;
-            var zValue = "Z" + zInput.value;
-            var radialValue = radialInput.value.trim() !== '' ? 'R' + radialInput.value: '';
-	    var wcsValue = wcsInput.value;
-	    var doublePointValue = doublePointInput.value;
-   	    var machineValue = selectedMachine.value;
-            codeElement.textContent =  machineValue + code + xValue + yValue + zValue + radialValue + doublePointValue + wcsValue + "(" + comment +  ")";
-        }
-    }
-    
-    machineId.addEventListener('input', function() {
-            updateProbeOn();
-            updateProbeOff();            
-    });
-
-
-
-    // Run both functions on page load
-    window.onload = function() {  	
-        updatePPMcode('ppm', 'ppm_x', 'ppm_y', 'ppm_z', 'ppm_feed');
-        updateSinglePointcode('single_pt', 'single_pt_axis', 'single_pt_pos', 'single_pt_wcs', 'single_pt_overtravel');
-	updateWebPocketcode('web_pocket',  'web_pocket_axis', 'web_pocket_width', 'web_pocket_pos', 'web_pocket_radial', 'web_pocket_wcs');
-	updateBoreBosscode('bore_boss', 'bore_boss_x', 'bore_boss_y', 'bore_boss_diameter', 'bore_boss_z', 'bore_boss_radial', 'bore_boss_wcs');
-	updateExternalRectanglecode('external_rectangle', 'external_rectangle_x_width', 'external_rectangle_y_width', 'external_rectangle_z', 'external_rectangle_radial', 'external_rectangle_wcs', 'external_double_points');
-    }
+	
+	
+	// Creates all of the elements inside the wcs select 
+    createWcsSelect('web_pocket_wcs');
+    createWcsSelect('single_pt_wcs');
+	createWcsSelect('bore_boss_wcs');
+	createWcsSelect('external_rectangle_wcs');
 </script>
 
+</body>
 </html>
